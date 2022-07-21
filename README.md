@@ -1,5 +1,7 @@
 TOP REPOSITORIES ON GITHUB TOPICS
+
 Pick a website and describe your objective
+
 -Pick website to scrap.Check project ideas section for inspiration.
 
 -Decide which information your are going to scrap.Decide which format of csv output to use.
@@ -7,6 +9,7 @@ Pick a website and describe your objective
 -Summary your project idea and and outline strategy in jupyter.
 
 Project Outline
+
 1.We are going to scrap https://github.com/topics.
 
 2.we will get a list of topics.For each topic will get topic title, topic page url and topic description.
