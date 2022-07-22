@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # TOP REPOSITORIES ON GITHUB TOPICS
-# 
+# # TOP REPOSITORIES ON GITHUB TOPICS 
 
 # ## Pick a website and describe your objective
 # 
@@ -35,39 +34,12 @@
 
 # ### Use request library to download web pages
 
-# In[ ]:
-
-
 get_ipython().system('pip install requests --quiet')
 
-
-# In[ ]:
-
-
 import requests
-
-
-# In[ ]:
-
-
 topics_url = 'https://github.com/topics'
-
-
-# In[ ]:
-
-
 response = requests.get('https://github.com/topics')
-
-
-# In[ ]:
-
-
 response.status_code
-
-
-# In[ ]:
-
-
 len(response.text)
 
 
@@ -91,102 +63,20 @@ get_ipython().system('pip install beautifulsoup4')
 from bs4 import BeautifulSoup
 doc = BeautifulSoup(page_contents, 'html.parser')
 type(doc)
-
-
-# In[ ]:
-
-
 topic_title_tags = doc.find_all('p', class_ = 'f3 lh-condensed mb-0 mt-1 Link--primary')
 topic_desc_tags = doc.find_all('p', class_ = 'f5 color-fg-muted mb-0 mt-1')
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
 len(topic_title_tags)
-
-
-# In[ ]:
-
-
 len(topic_desc_tags)
-
-
-# In[ ]:
-
-
 topic_desc_tags[:5]
-
-
-# In[ ]:
-
-
 repo_url = doc.find_all('a', class_ = 'no-underline flex-1 d-flex flex-column')
 topic_url0 ="https://github.com" + repo_url[0]['href']
 topic_url0
-
-
-# In[ ]:
-
-
 topic_titles = [ ]
 
 for tag in topic_title_tags :
     topic_titles.append(tag.text)
     
 print(topic_titles)
-
-
-# In[ ]:
-
 
 topic_desc = [ ]
 
@@ -195,10 +85,6 @@ for tag in topic_desc_tags :
     
 print(topic_desc)
 
-
-# In[ ]:
-
-
 topic_urls = []
 base = 'https://github.com'
 
@@ -206,51 +92,23 @@ for tags in repo_url:
     topic_urls.append(base + tags['href'])
     
 print(topic_urls)
-
-
-# In[ ]:
-
-
 get_ipython().system('pip install pandas --quiet')
 
 import pandas as pd
-
-
-
-# In[ ]:
-
 
 topic_dict = {
     'title' : topic_titles,
     'description' : topic_desc,
     'url' : topic_urls
 }
-
-
-# In[ ]:
-
-
-import pandas as pd
-
-
-# In[ ]:
-
-
 topics_df = pd.DataFrame(topic_dict, index = None)
 
-
-# ### Create csv file with extracted information
-
-# In[ ]:
-
+# Create csv file with extracted information
 
 topics_df .to_csv('topics.csv', index = None)
 
 
-# ### Getting information out a topic page
-
-# In[104]:
-
+# Getting information out a topic page
 
 topic_page_url = topic_urls[0]
 reponse = requests.get(topic_page_url)
@@ -268,8 +126,6 @@ def num_star_count(star_text):
     if stars_str[-1] == 'k' :
         return int(float (stars_str[:-1]) * 1000)
     return int(stars_str)
-
-
 
 
 def get_repo_info(h3_tag, star_tag):
@@ -307,244 +163,9 @@ def get_topic_repos(topic_doc):
         
     return pd.DataFrame(topic_repos_dict)
         
-        
-        
-
-     
-        
-        
-
-
-# In[ ]:
-
 
 topic_repos_df = pd.DataFrame(topic_repos_dict)
-topic_repos_df
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[102]:
-
-
-
-
-
-# In[103]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
+print(topic_repos_df)
 
 
 
