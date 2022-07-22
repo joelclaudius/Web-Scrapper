@@ -137,7 +137,3 @@ def get_topic_repos(topic_doc):
 
 topic_repos_df = pd.DataFrame(topic_repos_dict)
 print(topic_repos_df)
-
-
-
-
